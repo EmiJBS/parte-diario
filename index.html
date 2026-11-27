@@ -330,6 +330,8 @@ table.rst tr.tot td b{font-size:24px}
   .slide{transform:none}
 }
 @media (prefers-reduced-motion:no-preference){ .frame{transition:opacity .2s} }
+.wa .msg .pend{display:block;font-size:.74em;opacity:.65;margin-top:6px}
+.wa{gap:10px;padding:26px 30px}
 .bar a{font:600 14px Inter,sans-serif;border-radius:999px;padding:10px 18px;background:#fff;color:var(--ink);text-decoration:none}
 .bar a:focus-visible{outline:3px solid #fff;outline-offset:2px}
 </style>
@@ -388,9 +390,10 @@ table.rst tr.tot td b{font-size:24px}
     </div>
     <div class="wa">
       <div class="hd">Parte Diario · WhatsApp</div>
-      <div class="msg out">Hoy pasamos 45 vaquillas del potrero 3 al 7</div>
-      <div class="msg in">Registrado: traslado de 45 vaquillas, potrero 3 → potrero 7. ¿Confirmás?</div>
+      <div class="msg out">Hoy pasamos 45 vaquillas del potrero 3 al 7<span class="pend">🕓 Sin señal: se envió al volver</span></div>
+      <div class="msg in">Entendí: traslado de 45 vaquillas, del potrero 3 al potrero 7. ¿Lo registro?</div>
       <div class="msg out">Sí</div>
+      <div class="msg in">Listo, registrado.</div>
       <div class="msg in">Aviso: el tractor 2 llega a 250 horas esta semana y le toca el service. ¿Le aviso al taller?</div>
       <div class="msg out">Dale, para el jueves</div>
       <div class="msg in">Listo: service del tractor 2 agendado para el jueves. Ya le avisé al taller.</div>
