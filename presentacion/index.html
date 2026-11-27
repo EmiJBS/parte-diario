@@ -537,46 +537,29 @@ table.rst tr.tot td b{font-size:24px}
 
 </main>
 
-<div class="bar"><a href="parte-diario.pdf" download="Parte Diario — Presentación.pdf">Descargar PDF ↓</a><button id="play" type="button">Presentar ▸</button></div>
+<div class="bar"><a href="parte-diario.pdf" download="Parte Diario — Presentación.pdf">Descargar PDF ↓</a></div>
 
 <script>
 (function(){
-  var frames=[].slice.call(document.querySelectorAll('.frame')), cur=0, present=false;
-  function fit(){
-    var s = present ? Math.min(innerWidth/1920, innerHeight/1080)
-                    : Math.min((document.documentElement.clientWidth-32)/1920, 1400/1920);
-    document.documentElement.style.setProperty('--s', s);
+  var frames=[].slice.call(document.querySelectorAll('.frame')), last=0, lastT=0;
+  function fit(){ document.documentElement.style.setProperty('--s', Math.min((document.documentElement.clientWidth-32)/1920, 1400/1920)); }
+  function cur(){
+    var mid=innerHeight/2, best=0, d=1e9;
+    frames.forEach(function(f,k){ var r=f.getBoundingClientRect(), x=Math.abs(r.top+r.height/2-mid); if(x<d){ d=x; best=k; } });
+    return best;
   }
-  function show(i){
-    cur=Math.max(0,Math.min(frames.length-1,i));
-    frames.forEach(function(f,k){ f.classList.toggle('on', k===cur); });
+  function go(i){
+    i=Math.max(0,Math.min(frames.length-1,i)); last=i; lastT=Date.now();
+    var r=frames[i].getBoundingClientRect();
+    scrollTo({top: scrollY + r.top - Math.max(16,(innerHeight-r.height)/2), behavior:'smooth'});
   }
-  function toggle(on){
-    present=on; document.body.classList.toggle('present', on);
-    if(on){
-      var y=scrollY, best=0; frames.forEach(function(f,k){ if(f.offsetTop-80<=y) best=k; });
-      show(best);
-      if(document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(function(){});
-    } else {
-      if(document.fullscreenElement) document.exitFullscreen();
-      frames[cur].scrollIntoView();
-    }
-    document.getElementById('play').textContent = on ? 'Salir ✕' : 'Presentar ▸';
-    fit();
-  }
-  document.getElementById('play').addEventListener('click', function(){ toggle(!present); });
-  document.addEventListener('fullscreenchange', function(){ if(!document.fullscreenElement && present) toggle(false); });
   addEventListener('keydown', function(e){
-    if(!present){ if(e.key==='p'||e.key==='P') toggle(true); return; }
-    if(['ArrowRight','ArrowDown','PageDown',' '].indexOf(e.key)>=0){ e.preventDefault(); show(cur+1); }
-    else if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){ e.preventDefault(); show(cur-1); }
-    else if(e.key==='Home') show(0);
-    else if(e.key==='End') show(frames.length-1);
-    else if(e.key==='Escape') toggle(false);
-  });
-  document.addEventListener('click', function(e){
-    if(!present || e.target.closest('.bar')) return;
-    show(cur + (e.clientX > innerWidth/2 ? 1 : -1));
+    if(e.altKey||e.ctrlKey||e.metaKey) return;
+    var base = (Date.now()-lastT<700) ? last : cur();
+    if(['ArrowRight','ArrowDown','PageDown',' '].indexOf(e.key)>=0){ e.preventDefault(); go(base+1); }
+    else if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){ e.preventDefault(); go(base-1); }
+    else if(e.key==='Home'){ e.preventDefault(); go(0); }
+    else if(e.key==='End'){ e.preventDefault(); go(frames.length-1); }
   });
   addEventListener('resize', fit); fit();
 })();
