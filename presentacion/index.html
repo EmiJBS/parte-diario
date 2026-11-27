@@ -330,7 +330,6 @@ table.rst tr.tot td b{font-size:24px}
   .slide{transform:none}
 }
 @media (prefers-reduced-motion:no-preference){ .frame{transition:opacity .2s} }
-.wa .msg .pend{display:block;font-size:.74em;opacity:.65;margin-top:6px}
 .wa{gap:10px;padding:26px 30px}
 .capturas{display:grid;grid-template-columns:1040px 300px 1fr;gap:44px;margin-top:40px;align-items:center}.cap-col{display:flex;flex-direction:column;gap:20px}.capturas figure{position:relative;margin:0}.capturas img{display:block;width:100%}.cap-pc img{border-radius:12px;border:1px solid rgba(0,0,0,.12);box-shadow:0 14px 34px rgba(20,30,25,.16)}.cap-tel img{border-radius:30px;border:6px solid #1d2325;box-shadow:0 14px 34px rgba(20,30,25,.22)}.capturas figcaption{position:absolute;left:12px;bottom:12px;font:600 16px Inter,sans-serif;background:rgba(29,35,37,.88);color:#fff;padding:6px 12px;border-radius:999px}.mods-linea{margin-top:28px;font-size:22px;color:var(--meta)}.mods-linea b{color:var(--ink);margin-right:12px}.tres .card{padding:44px 40px}.tres .card h4{font-size:38px;margin:18px 0 16px}.tres .card p{font-size:29px;line-height:1.45}.bar a{font:600 14px Inter,sans-serif;border-radius:999px;padding:10px 18px;background:#fff;color:var(--ink);text-decoration:none}
 .bar a:focus-visible{outline:3px solid #fff;outline-offset:2px}
@@ -367,13 +366,12 @@ table.rst tr.tot td b{font-size:24px}
 
 <div class="frame"><section class="slide"><div class="pad">
   <div class="kick">El problema</div>
-  <h2>El campo se gestiona<br>en cuadernos</h2>
-  <div class="prob">
-    <div class="card"><h4>Datos dispersos</h4><p>Cuadernos, planillas y chats sueltos. La información queda en el campo.</p></div>
-    <div class="card"><h4>Decisiones tardías</h4><p>Los indicadores llegan a fin de mes, o no llegan.</p></div>
-    <div class="card"><h4>Software que nadie usa</h4><p>Apps complejas que el personal de campo abandona.</p></div>
-    <div class="card"><h4>Poca conectividad</h4><p>Señal intermitente en estancias alejadas, en el Chaco y el interior del país.</p></div>
-    <div class="dcard">
+  <h2>Del campo a la decisión,<br>el dato se pierde en el camino</h2>
+  <div class="prob" style="grid-template-columns:2fr 1.6fr;grid-template-rows:repeat(3,1fr);height:520px;margin-top:52px">
+    <div class="card"><h4>1 · Cargar datos no se sostiene</h4><p>Software complejo que el personal rechaza o abandona. Cargar se vuelve tedioso y se deja de hacer.</p></div>
+    <div class="card"><h4>2 · Entre el dato y la decisión pasa demasiado tiempo</h4><p>Alguien tiene que sentarse a procesar y armar los números. Los indicadores llegan a fin de mes, o no llegan.</p></div>
+    <div class="card"><h4>3 · La información está repartida</h4><p>Un Excel en una computadora, otro software, chats de WhatsApp y cuadernos. Nadie tiene la foto completa.</p></div>
+    <div class="dcard" style="grid-column:2;grid-row:1 / span 3">
       <div class="cap">El agro paraguayo, en números</div>
       <div class="rb"><span class="rn">Ganadería</span><div class="big num">12,8 M vacunos</div></div>
       <div class="rb"><span class="rn">Agricultura</span><div class="big num">4,2 M ha</div><div class="lbl">de agricultura, en 208.054 establecimientos</div></div>
@@ -395,7 +393,7 @@ table.rst tr.tot td b{font-size:24px}
     </div>
     <div class="wa">
       <div class="hd">Parte Diario · WhatsApp</div>
-      <div class="msg out">Hoy pasamos 45 vaquillas del potrero 3 al 7<span class="pend">🕓 Sin señal: se envió al volver</span></div>
+      <div class="msg out">Hoy pasamos 45 vaquillas del potrero 3 al 7</div>
       <div class="msg in">Entendí: traslado de 45 vaquillas, del potrero 3 al potrero 7. ¿Lo registro?</div>
       <div class="msg out">Sí</div>
       <div class="msg in">Listo, registrado.</div>
